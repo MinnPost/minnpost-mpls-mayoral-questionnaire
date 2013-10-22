@@ -118,12 +118,14 @@ module.exports = function(grunt) {
       // CSS libs
       libs_css: {
         src: [
-
+          'bower_components/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet.css'
         ],
         dest: 'dist/<%= pkg.name %>.libs.css'
       },
       libs_css_ie: {
-        src: [],
+        src: [
+          'bower_components/unsemantic/assets/stylesheets/ie.css'
+        ],
         dest: 'dist/<%= pkg.name %>.libs.ie.css'
       }
     },
@@ -212,7 +214,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>', 'css/*.scss'],
+      files: ['<%= jshint.files %>', 'sass/*.scss'],
       tasks: 'lint-watch'
     }
   });

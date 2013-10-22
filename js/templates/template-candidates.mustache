@@ -1,13 +1,17 @@
 <div class="candidates-questions-answers">
 
   {{#questions:q}}
-    <div class="question">
+    <div class="question grid-100 grid-parent">
       <h3>{{ shortname }}</h3>
       <p>{{ question }}</p>
 
       {{#answers:a}}
-        <h4>{{ candidate }}</h4>
-        <p>{{ answer }}</p>
+        <div class="answer grid-50">
+          <div class="answer-inner">
+            <h4>{{ candidate }}</h4>
+            <p>{{ answer }}</p>
+          </div>
+        </div>
       {{/answers}}
     </div>
   {{/questions}}

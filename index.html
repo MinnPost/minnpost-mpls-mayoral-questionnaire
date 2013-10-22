@@ -76,7 +76,7 @@ addthis_config = Drupal.settings.addthis.config_default; addthis_share = Drupal.
   <div class="node-body fieldlayout node-field-body">
     <!-- Library or external CSS files -->
     <style type="text/css">
-
+      @import url('./bower_components/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet.css');
     </style>
 
     <!-- Application CSS -->
@@ -85,6 +85,7 @@ addthis_config = Drupal.settings.addthis.config_default; addthis_share = Drupal.
     </style>
     <!--[if lte IE 8]>
       <style type="text/css">
+        @import url('./bower_components/unsemantic/assets/stylesheets/ie.css');
         @import url('./css/styles.ie.css');
       </style>
     <![endif]-->

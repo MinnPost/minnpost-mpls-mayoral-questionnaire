@@ -13,6 +13,7 @@
     "jquery-jsonp": "*",
     "underscore": "*",
     "backbone": "*",
-    "ractive": "*"
+    "ractive": "*",
+    "unsemantic": "https://github.com/nathansmith/unsemantic.git"
   }
 }

@@ -82,3 +82,8 @@ body .node-unpublished {
   height: 100%;
   line-height: 100%;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container .question .answer-inner {
+  margin-bottom: 1em;
+  border: 1px solid #BDBDBD;
+  padding: 1em;
+}
