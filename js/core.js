@@ -3,11 +3,13 @@
  */
 
 /**
- * Global variable to hold the "application" and templates.
+ * Global variable to hold the "application", templates, and data.
  */
 var mpApps = mpApps || {};
 var mpTemplates = mpTemplates || {};
 mpTemplates['minnpost-mpls-mayoral-questionnaire'] = mpTemplates['minnpost-mpls-mayoral-questionnaire'] || {};
+var mpData = mpData || {};
+mpData['minnpost-mpls-mayoral-questionnaire'] = mpData['minnpost-mpls-mayoral-questionnaire'] || {};
 
 /**
  * Extend underscore
@@ -59,7 +61,7 @@ _.mixin({
     this.options = _.extend(this.defaultOptions, options);
     this.$el = $(this.options.el);
     this.templates = mpTemplates['minnpost-mpls-mayoral-questionnaire'] || {};
-    this.data = this.data || {};
+    this.data = mpData['minnpost-mpls-mayoral-questionnaire'] || {};
   };
 
   _.extend(App.prototype, {
@@ -119,7 +121,7 @@ _.mixin({
      * the data directly from the JSON file, but for production
      * we want to proxy for JSONP.
      *
-     * `name` should be relative path to dataset minus the .json
+     * `name` should be name of file, minus .json
      *
      * Returns jQuery's defferred object.
      */

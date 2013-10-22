@@ -20,16 +20,59 @@
         });
 
         // Get data
-        thisApp.candidates = new App.prototype.CandidatesCollection({
+        thisApp.getLocalData(['questions_answers']).done(function(data) {
+          var questions = {};
+          data = data['2013 Mayoral Questionnaire'];
 
+          // Create collections container
+          thisApp.candidates = new App.prototype.CandidatesCollection();
+
+          // Parse out the data
+          _.each(data, function(r, i) {
+            // The first row is the questions
+            if (i === 0) {
+              _.each(r, function(c, n) {
+                if (n.indexOf('q') === 0) {
+                  questions[n] = c;
+                }
+              });
+            }
+          });
+          _.each(data, function(r, i) {
+            var candidate;
+            var answers = {};
+
+            // Now add each candidate and data
+            if (i > 0) {
+              candidate = new App.prototype.CandidateModel({});
+
+              _.each(r, function(c, n) {
+                if (n.indexOf('q') !== 0) {
+                  candidate.set(n, c);
+                }
+                else {
+                  answers[n] = {
+                    answer: c,
+                    question: questions[n]
+                  };
+                }
+              });
+
+              candidate.set('answers', answers);
+              thisApp.candidates.add(candidate);
+            }
+          });
+          console.log(thisApp.candidates);
+          // Create view
+          thisApp.candidatesView = new App.prototype.CandidatesView({
+            el: thisApp.$el.find('.content-container'),
+            template: thisApp.template('template-candidates'),
+            data: {
+              candidates: thisApp.candidates
+            },
+            adaptors: [ 'Backbone' ]
+          });
         });
-
-        thisApp.candidatesView = new App.prototype.CandidatesView({
-          el: thisApp.$el.find('.content-container'),
-          template: thisApp.template('template-candidates'),
-          data: thisApp.candidates
-        });
-
       });
     }
   });

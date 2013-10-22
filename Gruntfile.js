@@ -164,8 +164,8 @@ module.exports = function(grunt) {
     },
     gss_pull: {
       mayor_data: {
-        files: 'data/questions_answers.json',
-        src: ['0AjYft7IGrHzNdEtNMzF3YXJUbE43QnFFS1BqRlpFdEE']
+        src: ['0AjYft7IGrHzNdEtNMzF3YXJUbE43QnFFS1BqRlpFdEE'],
+        dest: 'data/questions_answers.json'
       }
     },
     s3: {
@@ -238,7 +238,7 @@ module.exports = function(grunt) {
 
     this.files.forEach(function(f) {
       var data = grunt.file.readJSON(f.src[0]);
-      finalOutput += 'mpApp["' + config.pkg.name + '"].data["' + f.dest + '"] = ' + JSON.stringify(data) + '; \n\n';
+      finalOutput += 'mpData["' + config.pkg.name + '"]["' + f.dest + '"] = ' + JSON.stringify(data) + '; \n\n';
       grunt.log.write('Read file: ' + f.src[0] + '...').ok();
 
     });

@@ -1,5 +1,13 @@
 <div class="candidates-questions-answers">
 
-  <h3>Candidates</h3>
+  {{#candidates:c}}
+    <div class="candidate">
+      <h3>{{ candidate }}</h3>
+
+      {{#answers:a}}
+        <p><strong>{{question}}</strong><br />{{answer}}</p>
+      {{/answers}}
+    </h3>
+  {{/candidates}}
 
 </div>
