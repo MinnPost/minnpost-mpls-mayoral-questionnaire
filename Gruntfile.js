@@ -56,13 +56,14 @@ module.exports = function(grunt) {
     clean: {
       folder: 'dist/'
     },
-    jst: {
-      compile: {
+    mustache: {
+      templates: {
+        src: 'js/templates/',
+        dest: 'dist/templates.js',
         options: {
-          namespace: 'mpApp.<%= pkg.name %>.templates'
-        },
-        files: {
-          'dist/templates.js': ['js/templates/*.html']
+          prefix: 'mpTemplates = mpTemplates || {}; mpTemplates[\'<%= pkg.name %>\'] = ',
+          postfix: ';',
+          verbose: true
         }
       }
     },
@@ -106,7 +107,8 @@ module.exports = function(grunt) {
           'bower_components/jquery-jsonp/src/jquery.jsonp.js',
           'bower_components/underscore/underscore-min.js',
           'bower_components/backbone/backbone-min.js',
-          'bower_components/ractivejs/ractivejs.js'
+          'bower_components/ractive/build/Ractive.min.js',
+          'bower_components/ractive/plugins/adaptors/Backbone.js'
         ],
         dest: 'dist/<%= pkg.name %>.libs.js',
         options: {
@@ -221,10 +223,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jst');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-mustache');
   grunt.loadNpmTasks('grunt-gss-pull');
   grunt.loadNpmTasks('grunt-s3');
 
@@ -238,7 +240,7 @@ module.exports = function(grunt) {
 
     this.files.forEach(function(f) {
       var data = grunt.file.readJSON(f.src[0]);
-      finalOutput += 'mpData["' + config.pkg.name + '"]["' + f.dest + '"] = ' + JSON.stringify(data) + '; \n\n';
+      finalOutput += 'mpData = mpData || {}; mpData["' + config.pkg.name + '"] = mpData["' + config.pkg.name + '"] || {}; mpData["' + config.pkg.name + '"]["' + f.dest + '"] = ' + JSON.stringify(data) + '; \n\n';
       grunt.log.write('Read file: ' + f.src[0] + '...').ok();
 
     });
@@ -248,7 +250,10 @@ module.exports = function(grunt) {
   });
 
   // Default build task
-  grunt.registerTask('default', ['jshint', 'sass', 'clean', 'gss_pull', 'data_embed', 'jst', 'concat', 'uglify', 'copy']);
+  grunt.registerTask('default', ['jshint', 'sass', 'clean', 'gss_pull', 'data_embed', 'mustache', 'concat', 'uglify', 'copy']);
+
+  // Data tasks
+  grunt.registerTask('data', ['gss_pull']);
 
   // Watch tasks
   grunt.registerTask('lint-watch', ['jshint', 'sass:dev']);

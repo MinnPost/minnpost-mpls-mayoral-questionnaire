@@ -62,7 +62,7 @@
               thisApp.candidates.add(candidate);
             }
           });
-          console.log(thisApp.candidates);
+
           // Create view
           thisApp.candidatesView = new App.prototype.CandidatesView({
             el: thisApp.$el.find('.content-container'),

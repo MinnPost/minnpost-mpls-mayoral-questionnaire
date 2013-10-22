@@ -141,20 +141,26 @@ _.mixin({
       // Go through each file and add to defers
       _.each(name, function(d) {
         var defer;
-        if (_.isUndefined(thisApp.data[d])) {
+        d = d + '.json';
 
+        if (_.isUndefined(thisApp.data[d])) {
           if (useJSONP) {
             defer = $.jsonp({
-              url: proxyPrefix + encodeURI(thisApp.options.dataPath + d + '.json')
+              url: proxyPrefix + encodeURI(thisApp.options.dataPath + d)
             });
           }
           else {
-            defer = $.getJSON(thisApp.options.dataPath + d + '.json');
+            defer = $.getJSON(thisApp.options.dataPath + d);
           }
 
           $.when(defer).done(function(data) {
             thisApp.data[d] = data;
           });
+          defers.push(defer);
+        }
+        else {
+          defer = $.Deferred();
+          defer.resolveWith(thisApp, [thisApp.data[d]]);
           defers.push(defer);
         }
       });
