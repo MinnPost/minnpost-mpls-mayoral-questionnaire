@@ -19,56 +19,47 @@
           template: thisApp.template('template-footnote')
         });
 
-        // Get data
+        // Get data.  Can't seem to find a way to use mustache and nested
+        // loops to be able to reference question ids, so that means
+        // we repeat data into a question collection
         thisApp.getLocalData(['questions_answers']).done(function(data) {
-          var questions = {};
-          data = data['2013 Mayoral Questionnaire'];
+          var questionsAnswers = [];
+          answers = data['2013 Mayoral Questionnaire'].answers;
+          questions = data['2013 Mayoral Questionnaire'].questions;
+
+          // Parse questions and answers
+          _.each(questions, function(q, qi) {
+            var qID = 'question-' + q.id;
+            q.answers = [];
+
+            _.each(answers, function(r, ri) {
+              var answer = {};
+              answer.answer = r[qID];
+
+              _.each(r, function(c, ci) {
+                if (ci.indexOf('question') !== 0) {
+                  answer[ci] = c;
+                }
+              });
+
+              q.answers.push(answer);
+            });
+
+            questionsAnswers.push(q);
+          });
 
           // Create collections container
-          thisApp.candidates = new App.prototype.CandidatesCollection();
+          thisApp.questions = new App.prototype.QuestionsCollection(questionsAnswers);
 
-          // Parse out the data
-          _.each(data, function(r, i) {
-            // The first row is the questions
-            if (i === 0) {
-              _.each(r, function(c, n) {
-                if (n.indexOf('q') === 0) {
-                  questions[n] = c;
-                }
-              });
-            }
-          });
-          _.each(data, function(r, i) {
-            var candidate;
-            var answers = {};
-
-            // Now add each candidate and data
-            if (i > 0) {
-              candidate = new App.prototype.CandidateModel({});
-
-              _.each(r, function(c, n) {
-                if (n.indexOf('q') !== 0) {
-                  candidate.set(n, c);
-                }
-                else {
-                  answers[n] = {
-                    answer: c,
-                    question: questions[n]
-                  };
-                }
-              });
-
-              candidate.set('answers', answers);
-              thisApp.candidates.add(candidate);
-            }
-          });
+          console.log(thisApp);
 
           // Create view
           thisApp.candidatesView = new App.prototype.CandidatesView({
             el: thisApp.$el.find('.content-container'),
             template: thisApp.template('template-candidates'),
             data: {
-              candidates: thisApp.candidates
+              candidates: thisApp.candidates,
+              questions: thisApp.questions
             },
             adaptors: [ 'Backbone' ]
           });
@@ -79,12 +70,16 @@
 
   // Models
   App.prototype.CandidateModel = Backbone.Model.extend({
-
+  });
+  App.prototype.QuestionModel = Backbone.Model.extend({
   });
 
   // Collections
   App.prototype.CandidatesCollection = Backbone.Collection.extend({
     model: App.prototype.CandidateModel
+  });
+  App.prototype.QuestionsCollection = Backbone.Collection.extend({
+    model: App.prototype.QuestionModel
   });
 
   // Views

@@ -1,13 +1,15 @@
 <div class="candidates-questions-answers">
 
-  {{#candidates:c}}
-    <div class="candidate">
-      <h3>{{ candidate }}</h3>
+  {{#questions:q}}
+    <div class="question">
+      <h3>{{ shortname }}</h3>
+      <p>{{ question }}</p>
 
       {{#answers:a}}
-        <p><strong>{{question}}</strong><br />{{answer}}</p>
+        <h4>{{ candidate }}</h4>
+        <p>{{ answer }}</p>
       {{/answers}}
-    </h3>
-  {{/candidates}}
+    </div>
+  {{/questions}}
 
 </div>
