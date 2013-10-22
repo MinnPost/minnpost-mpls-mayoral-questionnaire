@@ -1,7 +1,25 @@
-<div class="candidates-questions-answers">
+<div class="question-menu grid-25">
+  <h4>Questions</h4>
+
+  <ul>
+    {{#questions:q}}
+      <li><a href="#question-{{ id }}">{{ shortname }}</a></li>
+    {{/questions}}
+  </ul>
+
+  <h4>Candidates</h4>
+
+  <ul>
+    {{#candidates:c}}
+      <li>{{ candidate }}</li>
+    {{/candidates}}
+  </ul>
+</div>
+
+<div class="candidates-questions-answers grid-75">
 
   {{#questions:q}}
-    <div class="question grid-100 grid-parent">
+    <div class="question grid-100 grid-parent" id="question-{{ id }}">
       <h3>{{ shortname }}</h3>
       <p>{{ question }}</p>
 
@@ -15,5 +33,4 @@
       {{/answers}}
     </div>
   {{/questions}}
-
 </div>

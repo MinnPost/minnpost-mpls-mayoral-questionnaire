@@ -50,8 +50,7 @@
 
           // Create collections container
           thisApp.questions = new App.prototype.QuestionsCollection(questionsAnswers);
-
-          console.log(thisApp);
+          thisApp.aggregateCandidates();
 
           // Create view
           thisApp.candidatesView = new App.prototype.CandidatesView({
@@ -63,6 +62,25 @@
             },
             adaptors: [ 'Backbone' ]
           });
+        });
+      });
+    },
+
+    // Function to turn questions data into candidates model
+    aggregateCandidates: function() {
+      var thisApp = this;
+
+      if (!_.isObject(this.candidates)) {
+        this.candidates = new App.prototype.CandidatesCollection();
+      }
+
+      this.questions.each(function(q, qi) {
+        _.each(q.get('answers'), function(a, ai) {
+          var c = thisApp.candidates.get(a.id);
+
+          if (_.isUndefined(c)) {
+            thisApp.candidates.add(new App.prototype.CandidateModel(a));
+          }
         });
       });
     }
