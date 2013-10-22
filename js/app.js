@@ -1,55 +1,52 @@
 /**
- * Main app logic for: minnpost-mpls-mayoral-questionairre
+ * Main app logic for: minnpost-mpls-mayoral-questionnaire
  */
-(function(app, $, undefined) {
-  // Start function that starts the application.  This is not
-  // necessary, but just a helpful way to do this.  The main
-  // application HTML file calls this by default.
-  app.prototype.start = function() {
-    // Add in footnote HTML
-    this.getTemplate('template-footnote', function(compiledTemplate) {
-      $(this.options.el).append(compiledTemplate({ }));
-    }, this);
-  };
-  
-  // Get templates.  The get template method should be updated
-  // to handle multiple templates.
-  app.prototype.getTemplates = function(done, context) {
-    this.getTemplate('template-application', function(compiledTemplate) {
-      this.getTemplate('template-footnote', function(compiledTemplate) {
-        this.getTemplate('template-loading', function(compiledTemplate) {
-          
-            done.apply(context, []);
-          
-        }, this);
-      }, this);
-    }, this);
-  };
-  
-  // Start function that starts the application.
-  app.prototype.start = function() {
-    var thisApp = this;
-  
-    this.getTemplates(function() {
-      this.$el.html(this.template('template-application')({ }));
-      this.$el.find('.footnote-container').html(this.template('template-footnote')({ }));
-      
-      // Mark as loading
-      this.$el.find('.message-container').html(this.template('template-loading')({ })).slideDown();
-      
-      // Do stuff like get data
-      
-      
-      // Stop loading
-      this.$el.find('.message-container').slideUp(function() {
-        $(this).html('');
+(function(App, $, undefined) {
+  _.extend(App.prototype, {
+    // Start function that starts the application.
+    start: function() {
+      var thisApp = this;
+      var templates = ['template-application', 'template-footnote', 'template-candidates', 'template-loading'];
+
+      this.getTemplates(templates).done(function() {
+        // Render the container and "static" templates.
+        thisApp.applicationView = new Ractive({
+          el: thisApp.$el,
+          template: thisApp.template('template-application')
+        });
+        thisApp.footnoteView = new Ractive({
+          el: thisApp.$el.find('.footnote-container'),
+          template: thisApp.template('template-footnote')
+        });
+
+        // Get data
+        thisApp.candidates = new App.prototype.CandidatesCollection({
+
+        });
+
+        thisApp.candidatesView = new App.prototype.CandidatesView({
+          el: thisApp.$el.find('.content-container'),
+          template: thisApp.template('template-candidates'),
+          data: thisApp.candidates
+        });
+
       });
-      
-    }, this);
-  };
-  
-  
-  
-  
-  
-})(mpApps['minnpost-mpls-mayoral-questionairre'], jQuery);
+    }
+  });
+
+  // Models
+  App.prototype.CandidateModel = Backbone.Model.extend({
+
+  });
+
+  // Collections
+  App.prototype.CandidatesCollection = Backbone.Collection.extend({
+    model: App.prototype.CandidateModel
+  });
+
+  // Views
+  App.prototype.CandidatesView = Ractive.extend({
+    init: function() {
+    }
+  });
+})(mpApps['minnpost-mpls-mayoral-questionnaire'], jQuery);

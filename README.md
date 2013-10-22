@@ -1,10 +1,10 @@
-# MinnPost Minneapolis Mayoral Questionairre
+# MinnPost Minneapolis Mayoral Questionnaire
 
 An interactive look at the 2013 mayoral candidates views on specific questions.
 
 ## Data
 
-Data was collected with a questionairre sent out to select mayoral candidates by MinnPost.
+Data was collected with a questionnaire sent out to select mayoral candidates by MinnPost.
 
 ## Data processing
 
@@ -34,8 +34,8 @@ All commands are assumed to on the [command line](http://en.wikipedia.org/wiki/C
 
 Get the code for this project and install the necessary dependency libraries and packages.
 
-1. Check out this code with [Git](http://git-scm.com/): `git clone https://github.com/MinnPost/minnpost-mpls-mayoral-questionairre.git`
-1. Go into the template directory: `cd minnpost-mpls-mayoral-questionairre`
+1. Check out this code with [Git](http://git-scm.com/): `git clone https://github.com/MinnPost/minnpost-mpls-mayoral-questionnaire.git`
+1. Go into the template directory: `cd minnpost-mpls-mayoral-questionnaire`
 1. Install NodeJS packages: `npm install`
 1. Install Bower components: `bower install`
 

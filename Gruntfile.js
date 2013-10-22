@@ -18,7 +18,7 @@ module.exports = function(grunt) {
           output: 'dist/data.js'
         },
         files: {
-          'questions_answers.json': ['data/questions_answers.json'],
+          'questions_answers.json': ['data/questions_answers.json']
         }
       }
     },
@@ -164,9 +164,9 @@ module.exports = function(grunt) {
     },
     gss_pull: {
       mayor_data: {
-        dest: 'data/questions_answers.json',
+        files: 'data/questions_answers.json',
         src: ['0AjYft7IGrHzNdEtNMzF3YXJUbE43QnFFS1BqRlpFdEE']
-      },
+      }
     },
     s3: {
       options: {
@@ -225,7 +225,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-gss');
+  grunt.loadNpmTasks('grunt-gss-pull');
   grunt.loadNpmTasks('grunt-s3');
 
 

@@ -1,23 +1,23 @@
 /**
- * Main styles for: minnpost-mpls-mayoral-questionairre
+ * Main styles for: minnpost-mpls-mayoral-questionnaire
  *
  * Make the default styles for a 960px wide screen.  A mobile
  * first approach is fine, but starting with a 960px wide
  * screen means that older browsers that do not support
- * media queries will be fine as they are all desktop browsers. 
+ * media queries will be fine as they are all desktop browsers.
  */
 
 body .node-unpublished {
   background-repeat: no-repeat;
 }
-      
+
 .interactive-container  {
   max-width: 960px;
   margin: 0 auto;
   padding-top: 1em;
 }
 
-.minnpost-mpls-mayoral-questionairre-application-container {
+.minnpost-mpls-mayoral-questionnaire-application-container {
   max-width: 960px;
   margin: 0 auto;
   padding-top: 1em;
@@ -42,7 +42,7 @@ body .node-unpublished {
   .cf {
     *zoom: 1;
   }
-  
+
   .footnote {
     font-size: .75em;
     font-style: italic;
@@ -51,7 +51,7 @@ body .node-unpublished {
     border-top: 1px solid #BCBCBC;
     padding-top: 1em;
   }
-  
+
   .loading {
     width: 100%;
     text-align: center;
@@ -60,7 +60,7 @@ body .node-unpublished {
     vertical-align: middle;
     height: 100%;
     line-height: 100%;
-  
+
     span {
       padding: 10px 5px 10px 40px;
       background: transparent url($loader-image) center left no-repeat;
@@ -69,6 +69,6 @@ body .node-unpublished {
       line-height: 100%;
     }
   }
-  
-  
+
+
 }

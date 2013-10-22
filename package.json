@@ -1,15 +1,15 @@
 {
-  "name": "minnpost-mpls-mayoral-questionairre",
-  "title": "MinnPost Minneapolis Mayoral Questionairre",
+  "name": "minnpost-mpls-mayoral-questionnaire",
+  "title": "MinnPost Minneapolis Mayoral questionnaire",
   "description": "",
   "version": "0.0.1",
-  "homepage": "https://github.com/minnpost/minnpost-mpls-mayoral-questionairre",
+  "homepage": "https://github.com/minnpost/minnpost-mpls-mayoral-questionnaire",
   "repository": {
     "type": "git",
-    "url": "git://github.com/minnpost/minnpost-mpls-mayoral-questionairre.git"
+    "url": "git://github.com/minnpost/minnpost-mpls-mayoral-questionnaire.git"
   },
   "bugs": {
-    "url": "https://github.com/minnpost/minnpost-mpls-mayoral-questionairre/issues"
+    "url": "https://github.com/minnpost/minnpost-mpls-mayoral-questionnaire/issues"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,7 +33,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/MinnPost/minnpost-mpls-mayoral-questionairre/blob/master/LICENSE.txt"
+      "url": "https://github.com/MinnPost/minnpost-mpls-mayoral-questionnaire/blob/master/LICENSE.txt"
     }
   ],
   "contributors": [
