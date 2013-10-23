@@ -62,6 +62,7 @@ _.mixin({
     this.$el = $(this.options.el);
     this.templates = mpTemplates['minnpost-mpls-mayoral-questionnaire'] || {};
     this.data = mpData['minnpost-mpls-mayoral-questionnaire'] || {};
+    this.id = _.uniqueId('mp-');
   };
 
   _.extend(App.prototype, {
@@ -71,7 +72,8 @@ _.mixin({
     // Default options
     defaultOptions: {
       dataPath: './data/',
-      jsonpProxy: 'http://mp-jsonproxy.herokuapp.com/proxy?callback=?&url='
+      jsonpProxy: 'http://mp-jsonproxy.herokuapp.com/proxy?callback=?&url=',
+      localStorageKey: _.uniqueId('minnpost-mpls-mayoral-questionnaire-')
     },
 
     /**

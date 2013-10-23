@@ -8,16 +8,24 @@
       var thisApp = this;
       var templates = ['template-application', 'template-footnote', 'template-candidates', 'template-loading'];
 
+      // Check if we can use local storage
+      this.checkCanStore();
+
+      // Get templates
       this.getTemplates(templates).done(function() {
         // Render the container and "static" templates.
-        thisApp.applicationView = new Ractive({
+        thisApp.applicationView = new App.prototype.ApplicationView({
           el: thisApp.$el,
-          template: thisApp.template('template-application')
+          template: thisApp.template('template-application'),
+          data: {
+            canStore: thisApp.canStore
+          }
         });
-        thisApp.footnoteView = new Ractive({
+        thisApp.footnoteView = new App.prototype.FootnoteView({
           el: thisApp.$el.find('.footnote-container'),
           template: thisApp.template('template-footnote')
         });
+        thisApp.footnoteView.app = thisApp;
 
         // Get data.  Can't seem to find a way to use mustache and nested
         // loops to be able to reference question ids, so that means
@@ -27,29 +35,40 @@
           answers = data['2013 Mayoral Questionnaire'].answers;
           questions = data['2013 Mayoral Questionnaire'].questions;
 
-          // Parse questions and answers
-          _.each(questions, function(q, qi) {
-            var qID = 'question-' + q.id;
-            q.answers = [];
+          // Get local data
+          thisApp.questions = thisApp.fetch();
 
-            _.each(answers, function(r, ri) {
-              var answer = {};
-              answer.answer = r[qID];
+          // Make questions if needed
+          if (_.isUndefined(thisApp.questions)) {
+            // Parse questions and answers
+            _.each(questions, function(q, qi) {
+              var qID = 'question-' + q.id;
+              q.answers = [];
 
-              _.each(r, function(c, ci) {
-                if (ci.indexOf('question') !== 0) {
-                  answer[ci] = c;
-                }
+              _.each(answers, function(r, ri) {
+                var answer = {};
+                answer.answer = r[qID];
+
+                _.each(r, function(c, ci) {
+                  if (ci.indexOf('question') !== 0) {
+                    answer[ci] = c;
+                  }
+                });
+
+                q.answers.push(answer);
               });
 
-              q.answers.push(answer);
+              questionsAnswers.push(q);
             });
 
-            questionsAnswers.push(q);
-          });
+            // Create collections container
+            thisApp.questions = new App.prototype.QuestionsCollection(questionsAnswers);
 
-          // Create collections container
-          thisApp.questions = new App.prototype.QuestionsCollection(questionsAnswers);
+            // Store locally
+            thisApp.save();
+          }
+
+          // Aggregate the data
           thisApp.aggregateCandidates();
 
           // Create view
@@ -103,6 +122,53 @@
 
         c.set('starred', starred);
       });
+    },
+
+    // Check if localstorage is available
+    checkCanStore: function() {
+      var mod = 'modernizr';
+      try {
+        localStorage.setItem(mod, mod);
+        localStorage.removeItem(mod);
+        this.canStore = true;
+        return true;
+      }
+      catch(e) {
+        this.canStore = false;
+        return false;
+      }
+    },
+
+    // Save questions to local store
+    save: function() {
+      if (this.canStore) {
+        localStorage.setItem(this.options.localStorageKey, JSON.stringify(this.questions));
+      }
+    },
+
+    // Get questions to local store
+    fetch: function() {
+      var stored;
+
+      if (this.canStore) {
+        stored = localStorage.getItem(this.options.localStorageKey);
+        if (stored) {
+          return new App.prototype.QuestionsCollection(JSON.parse(stored));
+        }
+        else {
+          return undefined;
+        }
+      }
+      else {
+        return undefined;
+      }
+    },
+
+    // Destroy
+    destroy: function() {
+      if (this.canStore) {
+        return localStorage.removeItem(this.options.localStorageKey);
+      }
     }
   });
 
@@ -121,14 +187,26 @@
   });
 
   // Views
+  App.prototype.ApplicationView = Ractive.extend({
+  });
+  App.prototype.FootnoteView = Ractive.extend({
+    init: function() {
+      this.on('removeStorage', function(e) {
+        e.original.preventDefault();
+        this.app.destroy();
+      });
+    }
+  });
   App.prototype.CandidatesView = Ractive.extend({
     init: function() {
 
       // Handle starrring
       this.on('star', function(e) {
+        e.original.preventDefault();
         var current = this.get(e.keypath + '.starred');
         this.set(e.keypath + '.starred', (current) ? false : true);
         this.app.aggregateCandidates();
+        this.app.save();
       });
     }
   });

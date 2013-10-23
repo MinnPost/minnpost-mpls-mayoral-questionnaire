@@ -92,4 +92,12 @@ body .node-unpublished {
   .star.starred {
     color: yellow;
   }
+
+  .remove-storage {
+    display: none;
+  }
+
+  .can-store .remove-storage {
+    display: inline;
+  }
 }

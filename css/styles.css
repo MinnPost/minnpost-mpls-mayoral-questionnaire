@@ -101,3 +101,9 @@ body .node-unpublished {
 .minnpost-mpls-mayoral-questionnaire-application-container .star.starred {
   color: yellow;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container .remove-storage {
+  display: none;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .can-store .remove-storage {
+  display: inline;
+}
