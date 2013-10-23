@@ -62,6 +62,7 @@
             },
             adaptors: [ 'Backbone' ]
           });
+          thisApp.candidatesView.app = thisApp;
         });
       });
     },
@@ -70,18 +71,37 @@
     aggregateCandidates: function() {
       var thisApp = this;
 
+      // Create collection if needed
       if (!_.isObject(this.candidates)) {
         this.candidates = new App.prototype.CandidatesCollection();
       }
 
+      // Go through the questions and answers and get
+      // any candidates to add to collection
       this.questions.each(function(q, qi) {
         _.each(q.get('answers'), function(a, ai) {
           var c = thisApp.candidates.get(a.id);
 
           if (_.isUndefined(c)) {
-            thisApp.candidates.add(new App.prototype.CandidateModel(a));
+            c = new App.prototype.CandidateModel(a);
+            thisApp.candidates.add(c);
           }
         });
+      });
+
+      // Go through each candidate, then count the stars of each question
+      this.candidates.each(function(c, ci) {
+        var starred = 0;
+
+        thisApp.questions.each(function(q, qi) {
+          _.each(q.get('answers'), function(a, ai) {
+            if (a.starred && a.id === c.id) {
+              starred++;
+            }
+          });
+        });
+
+        c.set('starred', starred);
       });
     }
   });
@@ -103,6 +123,13 @@
   // Views
   App.prototype.CandidatesView = Ractive.extend({
     init: function() {
+
+      // Handle starrring
+      this.on('star', function(e) {
+        var current = this.get(e.keypath + '.starred');
+        this.set(e.keypath + '.starred', (current) ? false : true);
+        this.app.aggregateCandidates();
+      });
     }
   });
 })(mpApps['minnpost-mpls-mayoral-questionnaire'], jQuery);

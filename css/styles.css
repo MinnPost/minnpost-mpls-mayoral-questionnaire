@@ -87,3 +87,17 @@ body .node-unpublished {
   border: 1px solid #BDBDBD;
   padding: 1em;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container .star {
+  color: #BDBDBD;
+  font-size: 1em;
+  width: 1.5em;
+  text-align: right;
+  float: right;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .star:hover {
+  color: #232323;
+  cursor: pointer;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .star.starred {
+  color: yellow;
+}

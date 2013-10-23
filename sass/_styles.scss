@@ -76,4 +76,20 @@ body .node-unpublished {
     padding: 1em;
   }
 
+  .star {
+    color: #BDBDBD;
+    font-size: 1em;
+    width: 1.5em;
+    text-align: right;
+    float: right;
+  }
+
+  .star:hover {
+    color: #232323;
+    cursor: pointer;
+  }
+
+  .star.starred {
+    color: yellow;
+  }
 }

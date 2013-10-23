@@ -11,22 +11,25 @@
 
   <ul>
     {{#candidates:c}}
-      <li>{{ candidate }}</li>
+      <li>{{ candidate }} ({{ starred }})</li>
     {{/candidates}}
   </ul>
 </div>
 
 <div class="candidates-questions-answers grid-75">
-
   {{#questions:q}}
     <div class="question grid-100 grid-parent" id="question-{{ id }}">
       <h3>{{ shortname }}</h3>
+
       <p>{{ question }}</p>
 
       {{#answers:a}}
         <div class="answer grid-50">
           <div class="answer-inner">
+            <div class="star {{ (starred) ? 'starred' : '' }}" on-tap="star:q:a">★</div>
+
             <h4>{{ candidate }}</h4>
+
             <p>{{ answer }}</p>
           </div>
         </div>
