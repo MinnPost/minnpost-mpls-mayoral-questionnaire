@@ -38,36 +38,39 @@
           // Get local data
           thisApp.questions = thisApp.fetch();
 
-          // Make questions and answers if needed
-          if (_.isUndefined(thisApp.questions)) {
-            // Parse questions and answers
-            _.each(questions, function(q, qi) {
-              var qID = 'question-' + q.id;
-              var sID = 'summary-' + q.id;
-              q.answers = [];
+          // We actually want to see if things have changed so that
+          // the localstorage can be replaced.  In another version, the starred
+          // should have been saved separately
+          _.each(questions, function(q, qi) {
+            var qID = 'question-' + q.id;
+            var sID = 'summary-' + q.id;
+            q.answers = [];
 
-              _.each(answers, function(a, ai) {
-                var answer = {};
-                answer.answer = a[qID];
-                answer.summary = a[sID];
+            _.each(answers, function(a, ai) {
+              var answer = {};
+              answer.answer = a[qID];
+              answer.summary = a[sID];
 
-                _.each(a, function(c, ci) {
-                  if (ci.indexOf('question') !== 0 || ci.indexOf('summary') !== 0) {
-                    answer[ci] = c;
-                  }
-                });
-
-                q.answers.push(answer);
+              _.each(a, function(c, ci) {
+                if (ci.indexOf('question') !== 0 && ci.indexOf('summary') !== 0) {
+                  answer[ci] = c;
+                }
               });
 
-              questionsAnswers.push(q);
+              q.answers.push(answer);
             });
 
-            // Create collections container
-            thisApp.questions = new App.prototype.QuestionsCollection(questionsAnswers);
+            questionsAnswers.push(q);
+          });
 
-            // Store locally
+          if (_.isUndefined(thisApp.questions)) {
+            // Create collections container and store locally
+            thisApp.questions = new App.prototype.QuestionsCollection(questionsAnswers);
             thisApp.save();
+          }
+          else {
+            // Check if things have changed
+            thisApp.invalidateLocalStorage(questionsAnswers);
           }
 
           // Aggregate the data
@@ -171,6 +174,31 @@
     destroy: function() {
       if (this.canStore) {
         return localStorage.removeItem(this.options.localStorageKey);
+      }
+    },
+
+    // Look to see if we need to update the local storage
+    invalidateLocalStorage: function(recentData) {
+      var invalidate = false;
+      var current = JSON.parse(JSON.stringify(this.questions));
+
+      if (_.size(current) != _.size(recentData) ||
+        !_.isEqual(_.pluck(current, 'question'), _.pluck(recentData, 'question'))) {
+        invalidate = true;
+      }
+
+      _.each(recentData, function(r, ri) {
+        _.each(r.answers, function(a, ai) {
+          if (a.answer !== current[ri].answers[ai].answer ||
+            a.summary !== current[ri].answers[ai].summary) {
+            invalidate = true;
+          }
+        });
+      });
+
+      if (invalidate) {
+        this.questions = new App.prototype.QuestionsCollection(recentData);
+        this.save();
       }
     }
   });
