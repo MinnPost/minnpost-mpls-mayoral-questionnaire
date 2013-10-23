@@ -8,7 +8,9 @@ Data was collected with a questionnaire sent out to select mayoral candidates by
 
 ## Data processing
 
-Data is downloaded from Google Spreadheets.
+Data is downloaded from Google Spreadheets.  Use the following to get a new local copy:
+
+    grunt data
 
 ## Prerequisites
 
