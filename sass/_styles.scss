@@ -70,12 +70,6 @@ body .node-unpublished {
     }
   }
 
-  .question .answer-inner {
-    margin-bottom: 1em;
-    border: 1px solid #BDBDBD;
-    padding: 1em;
-  }
-
   .star {
     color: #BDBDBD;
     font-size: 1em;
@@ -99,5 +93,54 @@ body .node-unpublished {
 
   .can-store .remove-storage {
     display: inline;
+  }
+
+  .question-menu h5 {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .question-menu ul {
+    margin: 0 0 2em 0;
+    padding: 0;
+  }
+
+  .question-menu ul li {
+    font-family: $sans-serif-font;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 2em;
+  }
+
+  .question .question-title {
+    font-size: 92.3%;
+    font-family: $sans-serif-site-font;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .question .question-text {
+    font-family: $sans-serif-font;
+    margin-bottom: 1em;
+  }
+
+  .answer .answer-inner {
+    margin-bottom: 1em;
+    border: 1px solid #BDBDBD;
+    padding: 1em;
+    min-height: 9em;
+  }
+
+  .answer .answer-text {
+    font-size: .85em;
+  }
+
+  .answer .answer-image {
+    background-color: #BDBDBD;
+    width: 3em;
+    min-height: 4em;
+    margin: 0 1em 1em 0;
+    float: left;
   }
 }
