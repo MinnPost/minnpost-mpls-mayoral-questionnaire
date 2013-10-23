@@ -4,7 +4,7 @@
 
     <ul>
       {{#questions:q}}
-        <li><a href="#question-{{ id }}">{{ shortname }}</a></li>
+        <li><a href="#question-{{ id }}" on-tap="slideTo:{{ id }}">{{ shortname }}</a></li>
       {{/questions}}
     </ul>
 

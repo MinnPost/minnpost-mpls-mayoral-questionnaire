@@ -123,6 +123,9 @@ body .node-unpublished {
   padding: 0;
   line-height: 2em;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container .question {
+  margin-bottom: 1em;
+}
 .minnpost-mpls-mayoral-questionnaire-application-container .question .question-title {
   font-size: 92.3%;
   font-family: arial, helvetica, clean, sans-serif;
@@ -141,6 +144,7 @@ body .node-unpublished {
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-text {
   font-size: .85em;
+  line-height: 1.333333em;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-image {
   background-color: #BDBDBD;

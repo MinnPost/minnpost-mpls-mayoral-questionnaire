@@ -210,6 +210,13 @@
         this.app.aggregateCandidates();
         this.app.save();
       });
+
+      // Slide
+      this.on('slideTo', function(e, id) {
+        e.original.preventDefault();
+        var top = $('#question-' + id).offset().top;
+        $('html, body').animate({ scrollTop: top - 15}, 750);
+      });
     },
 
     // Sticky sidebar

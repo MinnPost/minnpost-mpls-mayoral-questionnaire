@@ -121,6 +121,10 @@ body .node-unpublished {
     line-height: 2em;
   }
 
+  .question {
+    margin-bottom: 1em;
+  }
+
   .question .question-title {
     font-size: 92.3%;
     font-family: $sans-serif-site-font;
@@ -142,6 +146,7 @@ body .node-unpublished {
 
   .answer .answer-text {
     font-size: .85em;
+    line-height: 1.333333em;
   }
 
   .answer .answer-image {
