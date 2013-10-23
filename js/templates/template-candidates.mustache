@@ -1,4 +1,4 @@
-<div class="question-menu grid-20">
+<div class="question-menu grid-20 mobile-grid-20 tablet-grid-20">
   <div class="question-menu-inner">
     <h5>Issues</h5>
 
@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div class="candidates-questions-answers grid-80">
+<div class="candidates-questions-answers grid-80 mobile-grid-80 tablet-grid-80">
   {{#questions:q}}
     <div class="question grid-100 grid-parent" id="question-{{ id }}">
       <p class="question-text"><span class="question-title">{{ shortname }}:</span> {{{ question }}}</p>
@@ -26,7 +26,7 @@
       {{#answers:a}}
         <div class="answer grid-50" id="answer-{{ q }}-{{ a }}">
           <div class="answer-inner">
-            <div class="answer-image"></div>
+            <div class="answer-image"><img src="{{ imagePath }}{{ image }}" /></div>
             <div class="star {{ (starred) ? 'starred' : '' }}" on-tap="star:{{ q }},{{ a }}">★</div>
 
             <h5>{{ candidate }}</h5>

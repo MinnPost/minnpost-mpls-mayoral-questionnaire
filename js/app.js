@@ -79,7 +79,8 @@
             template: thisApp.template('template-candidates'),
             data: {
               candidates: thisApp.candidates,
-              questions: thisApp.questions
+              questions: thisApp.questions,
+              imagePath: thisApp.options.imagePath
             },
             adaptors: [ 'Backbone' ]
           });

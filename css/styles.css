@@ -163,9 +163,14 @@ body .node-unpublished {
   clear: both;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-image {
-  background-color: #BDBDBD;
-  width: 3em;
-  min-height: 4em;
-  margin: 0 1em 1em 0;
+  width: 5em;
+  margin: 0 1em .5em 0;
   float: left;
+  padding: 0;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-image img {
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }

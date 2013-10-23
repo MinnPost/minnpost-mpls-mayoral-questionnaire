@@ -72,6 +72,7 @@ _.mixin({
     // Default options
     defaultOptions: {
       dataPath: './data/',
+      imagePath: './css/images/',
       jsonpProxy: 'http://mp-jsonproxy.herokuapp.com/proxy?callback=?&url=',
       localStorageKey: _.uniqueId('minnpost-mpls-mayoral-questionnaire-')
     },
