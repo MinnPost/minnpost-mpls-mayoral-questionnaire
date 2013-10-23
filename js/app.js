@@ -199,6 +199,8 @@
   });
   App.prototype.CandidatesView = Ractive.extend({
     init: function() {
+      // Sticky sidebar
+      this.sidebar();
 
       // Handle starrring
       this.on('star', function(e) {
@@ -207,6 +209,34 @@
         this.set(e.keypath + '.starred', (current) ? false : true);
         this.app.aggregateCandidates();
         this.app.save();
+      });
+    },
+
+    // Sticky sidebar
+    sidebar: function() {
+      var $sidebar = $('.question-menu-inner');
+      var stickyTop = $sidebar.offset().top;
+      var width = $sidebar.width();
+      var height = $sidebar.height();
+
+      // Scroll event
+      $(window).scroll(function() {
+        var windowTop = $(window).scrollTop();
+
+        // If the sticky is below
+        if (stickyTop < windowTop) {
+          $sidebar.css({
+            position: 'fixed',
+            top: 0,
+            width: width
+          }).addClass('sticky');
+        }
+        else {
+          $sidebar.css({
+            position: 'static',
+            width: 'auto'
+          }).removeClass('sticky');
+        }
       });
     }
   });

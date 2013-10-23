@@ -95,6 +95,14 @@ body .node-unpublished {
     display: inline;
   }
 
+  .question-menu {
+    min-height: 1em;
+  }
+
+  .question-menu-inner.sticky {
+    padding-top: 1em;
+  }
+
   .question-menu h5 {
     text-align: center;
     margin-bottom: 1em;

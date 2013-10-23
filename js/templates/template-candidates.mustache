@@ -1,19 +1,21 @@
 <div class="question-menu grid-20">
-  <h5>Questions</h5>
+  <div class="question-menu-inner">
+    <h5>Questions</h5>
 
-  <ul>
-    {{#questions:q}}
-      <li><a href="#question-{{ id }}">{{ shortname }}</a></li>
-    {{/questions}}
-  </ul>
+    <ul>
+      {{#questions:q}}
+        <li><a href="#question-{{ id }}">{{ shortname }}</a></li>
+      {{/questions}}
+    </ul>
 
-  <h5>Candidates</h5>
+    <h5>Candidates</h5>
 
-  <ul>
-    {{#candidates:c}}
-      <li>({{ starred }}) {{ candidate }}</li>
-    {{/candidates}}
-  </ul>
+    <ul>
+      {{#candidates:c}}
+        <li>({{ starred }}) {{ candidate }}</li>
+      {{/candidates}}
+    </ul>
+  </div>
 </div>
 
 <div class="candidates-questions-answers grid-80">
