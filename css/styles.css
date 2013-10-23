@@ -112,9 +112,6 @@ body .node-unpublished {
 .minnpost-mpls-mayoral-questionnaire-application-container .question-menu {
   min-height: 1em;
 }
-.minnpost-mpls-mayoral-questionnaire-application-container .question-menu-inner.sticky {
-  padding-top: 1em;
-}
 .minnpost-mpls-mayoral-questionnaire-application-container .question-menu h5 {
   text-align: center;
   margin-bottom: 1em;

@@ -221,29 +221,16 @@
 
     // Sticky sidebar
     sidebar: function() {
-      var $sidebar = $('.question-menu-inner');
-      var stickyTop = $sidebar.offset().top;
-      var width = $sidebar.width();
-      var height = $sidebar.height();
+      var $sidebar = $('.question-menu');
+      var origW = $sidebar.width();
 
-      // Scroll event
-      $(window).scroll(function() {
-        var windowTop = $(window).scrollTop();
+      $sidebar.stick_in_parent({
+        offset_top: 10
+      });
 
-        // If the sticky is below
-        if (stickyTop < windowTop) {
-          $sidebar.css({
-            position: 'fixed',
-            top: 0,
-            width: width
-          }).addClass('sticky');
-        }
-        else {
-          $sidebar.css({
-            position: 'static',
-            width: 'auto'
-          }).removeClass('sticky');
-        }
+      // The width gets set to a specific value for some reason
+      $sidebar.on("sticky_kit:stick", function(e) {
+        $(this).width(origW);
       });
     }
   });

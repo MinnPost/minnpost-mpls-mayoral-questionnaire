@@ -14,6 +14,7 @@
     "underscore": "*",
     "backbone": "*",
     "ractive": "*",
-    "unsemantic": "https://github.com/nathansmith/unsemantic.git"
+    "unsemantic": "https://github.com/nathansmith/unsemantic.git",
+    "sticky-kit": "~1.0.1"
   }
 }
