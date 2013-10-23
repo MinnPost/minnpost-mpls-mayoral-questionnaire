@@ -1,6 +1,6 @@
 <div class="question-menu grid-20">
   <div class="question-menu-inner">
-    <h5>Questions</h5>
+    <h5>Issues</h5>
 
     <ul>
       {{#questions:q}}
@@ -12,7 +12,7 @@
 
     <ul>
       {{#candidates:c}}
-        <li>({{ starred }}) {{ candidate }}</li>
+        <li>{{ starred }} &mdash; {{ candidate }}</li>
       {{/candidates}}
     </ul>
   </div>
@@ -21,7 +21,7 @@
 <div class="candidates-questions-answers grid-80">
   {{#questions:q}}
     <div class="question grid-100 grid-parent" id="question-{{ id }}">
-      <p class="question-text"><span class="question-title">{{ shortname }}:</span> {{ question }}</p>
+      <p class="question-text"><span class="question-title">{{ shortname }}:</span> {{{ question }}}</p>
 
       {{#answers:a}}
         <div class="answer grid-50">

@@ -70,6 +70,15 @@ body .node-unpublished {
     }
   }
 
+  a {
+    color: #3363FF;
+  }
+
+  h5 {
+    text-transform: none;
+    font-size: 1.25em;
+  }
+
   .star {
     color: #BDBDBD;
     font-size: 1em;
@@ -84,7 +93,7 @@ body .node-unpublished {
   }
 
   .star.starred {
-    color: yellow;
+    color: #F5BC00;
   }
 
   .remove-storage {
@@ -126,10 +135,9 @@ body .node-unpublished {
   }
 
   .question .question-title {
-    font-size: 92.3%;
+    font-size: 100%;
     font-family: $sans-serif-site-font;
     font-weight: bold;
-    text-transform: uppercase;
   }
 
   .question .question-text {

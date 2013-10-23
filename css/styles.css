@@ -82,6 +82,13 @@ body .node-unpublished {
   height: 100%;
   line-height: 100%;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container a {
+  color: #3363FF;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container h5 {
+  text-transform: none;
+  font-size: 1.25em;
+}
 .minnpost-mpls-mayoral-questionnaire-application-container .star {
   color: #BDBDBD;
   font-size: 1em;
@@ -94,7 +101,7 @@ body .node-unpublished {
   cursor: pointer;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .star.starred {
-  color: yellow;
+  color: #F5BC00;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .remove-storage {
   display: none;
@@ -127,10 +134,9 @@ body .node-unpublished {
   margin-bottom: 1em;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .question .question-title {
-  font-size: 92.3%;
+  font-size: 100%;
   font-family: arial, helvetica, clean, sans-serif;
   font-weight: bold;
-  text-transform: uppercase;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .question .question-text {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
