@@ -24,14 +24,21 @@
       <p class="question-text"><span class="question-title">{{ shortname }}:</span> {{{ question }}}</p>
 
       {{#answers:a}}
-        <div class="answer grid-50">
+        <div class="answer grid-50" id="answer-{{ q }}-{{ a }}">
           <div class="answer-inner">
             <div class="answer-image"></div>
-            <div class="star {{ (starred) ? 'starred' : '' }}" on-tap="star:q:a">★</div>
+            <div class="star {{ (starred) ? 'starred' : '' }}" on-tap="star:{{ q }},{{ a }}">★</div>
 
             <h5>{{ candidate }}</h5>
 
-            <p class="answer-text">{{ answer }}</p>
+            <div class="summary-answer">
+              <p class="summary-text"><strong>Summary</strong>: {{ summary }}</p>
+
+              {{#answer}}
+                <a class="read-more" href="read-more-{{ q }}-{{ a }}" on-tap="readMore:{{ q }},{{ a }}">Read more</a>
+                <p class="answer-text">{{ answer }}</p>
+              {{/answer}}
+            </div>
           </div>
         </div>
       {{/answers}}

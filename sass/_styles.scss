@@ -141,6 +141,10 @@ body .node-unpublished {
     margin-bottom: 1em;
   }
 
+  .answer h5 {
+    margin-bottom: 1em;
+  }
+
   .answer .answer-inner {
     margin-bottom: 1em;
     border: 1px solid #BDBDBD;
@@ -148,9 +152,21 @@ body .node-unpublished {
     min-height: 9em;
   }
 
-  .answer .answer-text {
+  .answer .summary-answer {
     font-size: .85em;
     line-height: 1.333333em;
+  }
+
+  .answer .answer-text {
+    display: none;
+  }
+
+  .answer .summary-answer .read-more {
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1em;
+    text-align: center;
+    clear: both;
   }
 
   .answer .answer-image {

@@ -139,15 +139,28 @@ body .node-unpublished {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin-bottom: 1em;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container .answer h5 {
+  margin-bottom: 1em;
+}
 .minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-inner {
   margin-bottom: 1em;
   border: 1px solid #BDBDBD;
   padding: 1em;
   min-height: 9em;
 }
-.minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-text {
+.minnpost-mpls-mayoral-questionnaire-application-container .answer .summary-answer {
   font-size: .85em;
   line-height: 1.333333em;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-text {
+  display: none;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .answer .summary-answer .read-more {
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1em;
+  text-align: center;
+  clear: both;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .answer .answer-image {
   background-color: #BDBDBD;

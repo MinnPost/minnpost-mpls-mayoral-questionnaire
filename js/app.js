@@ -38,19 +38,21 @@
           // Get local data
           thisApp.questions = thisApp.fetch();
 
-          // Make questions if needed
+          // Make questions and answers if needed
           if (_.isUndefined(thisApp.questions)) {
             // Parse questions and answers
             _.each(questions, function(q, qi) {
               var qID = 'question-' + q.id;
+              var sID = 'summary-' + q.id;
               q.answers = [];
 
-              _.each(answers, function(r, ri) {
+              _.each(answers, function(a, ai) {
                 var answer = {};
-                answer.answer = r[qID];
+                answer.answer = a[qID];
+                answer.summary = a[sID];
 
-                _.each(r, function(c, ci) {
-                  if (ci.indexOf('question') !== 0) {
+                _.each(a, function(c, ci) {
+                  if (ci.indexOf('question') !== 0 || ci.indexOf('summary') !== 0) {
                     answer[ci] = c;
                   }
                 });
@@ -211,10 +213,21 @@
         this.app.save();
       });
 
+      // Read more
+      this.on('readMore', function(e, parts) {
+        e.original.preventDefault();
+        var q = parts.split(',')[0];
+        var a = parts.split(',')[1];
+        var $answer = $(this.el).find('#answer-' + q + '-' + a);
+        $answer.find('.read-more, .summary-text').fadeOut(function() {
+          $answer.find('.answer-text').slideDown();
+        });
+      });
+
       // Slide
       this.on('slideTo', function(e, id) {
         e.original.preventDefault();
-        var top = $('#question-' + id).offset().top;
+        var top = $(this.el).find('#question-' + id).offset().top;
         $('html, body').animate({ scrollTop: top - 15}, 750);
       });
     },
