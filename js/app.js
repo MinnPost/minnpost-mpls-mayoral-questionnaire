@@ -241,6 +241,8 @@
   });
   App.prototype.CandidatesView = Ractive.extend({
     init: function() {
+      var thisView = this;
+
       // Sticky sidebar
       this.sidebar();
 
@@ -289,16 +291,26 @@
 
     // Sticky sidebar
     sidebar: function() {
-      var $sidebar = $('.question-menu');
-      var origW = $sidebar.width();
+      var thisView = this;
+      var classes = 'grid-20 mobile-grid-35 tablet-grid-20';
+      this.$sidebar = $('.question-menu');
+      this.sidebarWidth = this.$sidebar.css('width');
 
-      $sidebar.stick_in_parent({
+      this.$sidebar.stick_in_parent({
         offset_top: 10
       });
 
-      // The width gets set to a specific value for some reason
-      $sidebar.on("sticky_kit:stick", function(e) {
-        $(this).width(origW);
+      // Sticky kit forces a width which screws over a fluid design
+      this.$sidebar.on('sticky_kit:stick', function(e) {
+        thisView.$sidebar.removeClass(classes);
+        thisView.$sidebar.parent().addClass(classes);
+        thisView.$sidebar.parent().css({
+          'width': ''
+        });
+      });
+      this.$sidebar.on('sticky_kit:unstick', function(e) {
+        thisView.$sidebar.addClass(classes);
+        thisView.$sidebar.parent().removeClass(classes);
       });
     }
   });
