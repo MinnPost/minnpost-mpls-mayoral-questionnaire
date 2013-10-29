@@ -12,7 +12,7 @@
 
     <ul>
       {{#candidates:c}}
-        <li>{{ starred }} &mdash; {{ candidate }}</li>
+        <li class="{{ (maxStarred !== 0 && maxStarred === starred) ? 'favored-candidate' : '' }}"><span class="starred-candidate">{{ starred }}</span> &mdash; {{ candidate }}</li>
       {{/candidates}}
     </ul>
   </div>

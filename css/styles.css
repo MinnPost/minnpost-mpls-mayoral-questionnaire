@@ -83,7 +83,7 @@ body .node-unpublished {
   line-height: 100%;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container a {
-  color: #3363FF;
+  color: #0073b6;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container h5 {
   text-transform: none;
@@ -97,7 +97,7 @@ body .node-unpublished {
   float: right;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .star:hover {
-  color: #232323;
+  color: #797979;
   cursor: pointer;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .star.starred {
@@ -113,7 +113,6 @@ body .node-unpublished {
   min-height: 1em;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .question-menu h5 {
-  text-align: center;
   margin-bottom: 1em;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .question-menu ul {
@@ -127,6 +126,12 @@ body .node-unpublished {
   padding: 0;
   line-height: 2em;
 }
+.minnpost-mpls-mayoral-questionnaire-application-container .question-menu .starred-candidate {
+  color: #DBA800;
+}
+.minnpost-mpls-mayoral-questionnaire-application-container .question-menu .favored-candidate {
+  font-weight: bold;
+}
 .minnpost-mpls-mayoral-questionnaire-application-container .question {
   margin-bottom: 1em;
 }
@@ -138,6 +143,8 @@ body .node-unpublished {
 .minnpost-mpls-mayoral-questionnaire-application-container .question .question-text {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   margin-bottom: 1em;
+  font-size: 1.25em;
+  line-height: 1.25em;
 }
 .minnpost-mpls-mayoral-questionnaire-application-container .answer h5 {
   margin-bottom: 1em;

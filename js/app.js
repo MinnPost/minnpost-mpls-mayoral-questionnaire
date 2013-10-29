@@ -83,7 +83,8 @@
             data: {
               candidates: thisApp.candidates,
               questions: thisApp.questions,
-              imagePath: thisApp.options.imagePath
+              imagePath: thisApp.options.imagePath,
+              maxStarred: thisApp.maxStarred || 0
             },
             adaptors: [ 'Backbone' ]
           });
@@ -95,6 +96,7 @@
     // Function to turn questions data into candidates model
     aggregateCandidates: function() {
       var thisApp = this;
+      var max;
 
       // Create collection if needed
       if (!_.isObject(this.candidates)) {
@@ -128,6 +130,15 @@
 
         c.set('starred', starred);
       });
+
+      // Figure out what is favored candidate
+      max = this.candidates.max(function(c, i) {
+        return c.get('starred');
+      });
+      this.maxStarred = max.get('starred');
+      if (_.isObject(this.candidatesView)) {
+        thisApp.candidatesView.set('maxStarred', this.maxStarred);
+      }
     },
 
     // Check if localstorage is available

@@ -71,7 +71,7 @@ body .node-unpublished {
   }
 
   a {
-    color: #3363FF;
+    color: #0073b6;
   }
 
   h5 {
@@ -88,7 +88,7 @@ body .node-unpublished {
   }
 
   .star:hover {
-    color: #232323;
+    color: #797979;
     cursor: pointer;
   }
 
@@ -109,7 +109,6 @@ body .node-unpublished {
   }
 
   .question-menu h5 {
-    text-align: center;
     margin-bottom: 1em;
   }
 
@@ -126,6 +125,14 @@ body .node-unpublished {
     line-height: 2em;
   }
 
+  .question-menu .starred-candidate {
+    color: #DBA800;
+  }
+
+  .question-menu .favored-candidate {
+    font-weight: bold;
+  }
+
   .question {
     margin-bottom: 1em;
   }
@@ -139,6 +146,8 @@ body .node-unpublished {
   .question .question-text {
     font-family: $sans-serif-font;
     margin-bottom: 1em;
+    font-size: 1.25em;
+    line-height: 1.25em;
   }
 
   .answer h5 {
