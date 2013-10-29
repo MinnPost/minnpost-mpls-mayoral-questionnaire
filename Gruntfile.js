@@ -107,7 +107,7 @@ module.exports = function(grunt) {
           'bower_components/jquery-jsonp/src/jquery.jsonp.js',
           'bower_components/underscore/underscore-min.js',
           'bower_components/backbone/backbone-min.js',
-          'bower_components/ractive/build/Ractive.min.js',
+          'bower_components/ractive/build/Ractive-legacy.min.js',
           'bower_components/ractive/plugins/adaptors/Backbone.js',
           'bower_components/sticky-kit/jquery.sticky-kit.min.js'
         ],

@@ -135,7 +135,7 @@ addthis_config = Drupal.settings.addthis.config_default; addthis_share = Drupal.
     -->
     <script type="text/javascript">
       // Hack around existing jQuery
-      if (jQuery) {
+      if (typeof jQuery != 'undefined') {
         window._jQuery = window.jQuery;
         window._$ = window.$;
       }
@@ -146,7 +146,7 @@ addthis_config = Drupal.settings.addthis.config_default; addthis_share = Drupal.
     <script type="text/javascript" src="./bower_components/jquery-jsonp/src/jquery.jsonp.js"></script>
     <script type="text/javascript" src="./bower_components/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="./bower_components/backbone/backbone-min.js"></script>
-    <script type="text/javascript" src="./bower_components/ractive/build/Ractive.min.js"></script>
+    <script type="text/javascript" src="./bower_components/ractive/build/Ractive-legacy.min.js"></script>
     <script type="text/javascript" src="./bower_components/ractive/plugins/adaptors/Backbone.js"></script>
     <script type="text/javascript" src="./bower_components/sticky-kit/jquery.sticky-kit.min.js"></script>
 
@@ -161,17 +161,19 @@ addthis_config = Drupal.settings.addthis.config_default; addthis_share = Drupal.
     <script type="text/javascript">
       (function(App, $, undefined) {
         $(document).ready(function() {
+          try {
           var thisApp = new App({
             el: '#minnpost-mpls-mayoral-questionnaire-container'
           });
           thisApp.start();
+          } catch (e) { }
         });
       })(mpApps['minnpost-mpls-mayoral-questionnaire'], jQuery);
     </script>
 
     <script type="text/javascript">
       // Hack back in the original jQuery
-      if (window._jQuery) {
+      if (typeof window._jQuery != 'undefined') {
         window.jQuery = window._jQuery;
         window.$ = window._$;
       }
