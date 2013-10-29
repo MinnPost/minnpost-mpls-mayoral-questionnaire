@@ -248,9 +248,24 @@
         var q = parts.split(',')[0];
         var a = parts.split(',')[1];
         var $answer = $(this.el).find('#answer-' + q + '-' + a);
-        $answer.find('.read-more, .summary-text').fadeOut(function() {
-          $answer.find('.answer-text').slideDown();
-        });
+        var more = $answer.data('more') || false;
+
+        if (!more) {
+          $answer.find('.read-more').html('Read less');
+          $answer.find('.summary-text').fadeOut(function() {
+            $answer.find('.answer-text').slideDown();
+          });
+          $answer.data('more', true);
+        }
+        else {
+          $answer.find('.read-more').html('Read more');
+          $answer.find('.answer-text').slideUp(function() {
+            $answer.find('.summary-text').fadeIn();
+          });
+          $answer.data('more', false);
+
+          $('html, body').animate({ scrollTop: $answer.offset().top - 5}, 750);
+        }
       });
 
       // Slide

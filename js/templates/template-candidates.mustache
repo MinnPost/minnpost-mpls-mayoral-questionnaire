@@ -35,8 +35,9 @@
               <p class="summary-text"><strong>Summary</strong>: {{ summary }}</p>
 
               {{#answer}}
+                <p class="answer-text">{{{ answer }}}</p>
+
                 <a class="read-more" href="read-more-{{ q }}-{{ a }}" on-tap="readMore:{{ q }},{{ a }}">Read more</a>
-                <p class="answer-text">{{ answer }}</p>
               {{/answer}}
             </div>
           </div>
